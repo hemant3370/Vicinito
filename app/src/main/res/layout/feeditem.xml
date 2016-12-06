@@ -1,0 +1,122 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/album_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="8dp"
+    android:minHeight="100dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ivProfile"
+            android:layout_width="match_parent"
+            android:scaleType="fitCenter"
+            android:paddingTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="200dp"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/titletv"
+            android:layout_below="@+id/ivProfile"
+            android:textColorHighlight="@color/colorAccent"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="8dp"
+            android:textColor="@color/colorAccent"
+            android:text="Job Name"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/descriptiontv"
+            android:layout_below="@+id/titletv"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:text="Company Name"
+            />
+        <ImageView
+            android:layout_width="53dp"
+            android:layout_height="43dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:id="@+id/authoriv"
+            android:src="@drawable/ic_menu_gallery"
+            android:layout_below="@+id/descriptiontv"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descriptiontv"
+            android:id="@+id/authornametv"
+            android:layout_alignTop="@+id/authoriv"
+            android:layout_toRightOf="@+id/authoriv"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:text="Location"
+            android:layout_above="@+id/heartcount" />
+        <com.like.LikeButton
+            app:icon_type="heart"
+            app:icon_size="25dp"
+            android:layout_below="@+id/authoriv"
+            android:id="@+id/heartiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/authoriv"
+            android:gravity="center"
+            android:id="@+id/heartcount"
+            android:layout_toRightOf="@+id/heartiv"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:text="Location"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shareiv"
+            android:src="@drawable/ic_menu_share"
+            android:background="@android:color/background_light"
+            android:foregroundGravity="center"
+            android:paddingLeft="20dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:layout_toRightOf="@+id/heartcount"
+            android:layout_below="@+id/authoriv"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/authoriv"
+            android:id="@+id/sharecount"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/shareiv"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:text="Location"
+            />
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

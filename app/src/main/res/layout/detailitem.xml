@@ -1,0 +1,43 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/album_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="8dp"
+    android:minHeight="100dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ivdetailitem"
+            android:layout_width="match_parent"
+            android:scaleType="fitCenter"
+            android:paddingTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="200dp"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detailivdesc"
+            android:layout_below="@+id/ivdetailitem"
+            android:textSize="14sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Caption"
+            />
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
