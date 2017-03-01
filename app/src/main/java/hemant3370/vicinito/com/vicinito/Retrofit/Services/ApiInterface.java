@@ -6,20 +6,13 @@ package hemant3370.vicinito.com.vicinito.Retrofit.Services;
 import java.util.List;
 
 import hemant3370.vicinito.com.vicinito.Models.Stream.ItemDetail.ItemDetail;
+import hemant3370.vicinito.com.vicinito.Models.Stream.Stream;
 import hemant3370.vicinito.com.vicinito.Models.Stream.StreamResponse;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.*;
+import hemant3370.vicinito.com.vicinito.Models.Stream.TopicResponse;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Created by rahulkumarlohra on 18/06/16.
@@ -35,12 +28,22 @@ public interface ApiInterface {
 //
 //
     @Headers("Content-Type: application/json")
+    @GET("/webservice/getTopics")
+    Call<List<TopicResponse>> getTopics();
+
+    @Headers("Content-Type: application/json")
     @GET("/feed/getStream/")
     Call<StreamResponse> getFeed();
 
     @Headers("Content-Type: application/json")
+    @GET("/search/topic/{id}")
+    Call<List<Stream>> getFeedByTopic(@Path("id") String id);
+
+    @Headers("Content-Type: application/json")
     @GET("/view/content/{id}")
     Call<ItemDetail> getFeedItem(@Path("id") String id);
+
+
 //
 //
 //

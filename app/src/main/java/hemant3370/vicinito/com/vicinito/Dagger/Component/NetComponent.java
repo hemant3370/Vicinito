@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import hemant3370.vicinito.com.vicinito.Activities.DetailActivity;
+import hemant3370.vicinito.com.vicinito.Activities.TopicsActivity;
 import hemant3370.vicinito.com.vicinito.Dagger.Module.AppModule;
 import hemant3370.vicinito.com.vicinito.Dagger.Module.NetModule;
 import hemant3370.vicinito.com.vicinito.Activities.MainActivity;
@@ -21,6 +22,7 @@ public interface NetComponent {
 
     void inject(MainActivity activity);
     void inject(DetailActivity activity);
+    void inject(TopicsActivity activity);
 
 
 

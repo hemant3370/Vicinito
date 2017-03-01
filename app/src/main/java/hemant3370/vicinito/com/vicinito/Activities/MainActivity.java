@@ -55,11 +55,11 @@ public class MainActivity extends AppCompatActivity
         public void fabAction(){
 
         }
-@Inject
-Retrofit mRetrofit;
+        @Inject
+        Retrofit mRetrofit;
         ApiInterface apiInterface;
-@Override
-protected void onCreate(Bundle savedInstanceState) {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -101,8 +101,8 @@ public void onClick(View view) {
         mRecyclerView.setHasFixedSize(true);
 
         listener = new CustomItemClickListener() {
-@Override
-public void onItemClick(View v, int position) {
+        @Override
+        public void onItemClick(View v, int position) {
         Intent detail = new Intent(MainActivity.this,DetailActivity.class);
         detail.putExtra("id",feed.get(position).getId());
         startActivity(detail);
@@ -114,7 +114,47 @@ public void onItemClick(View v, int position) {
         attemptLogin();
         }
 
-private void attemptLogin() {
+
+        private void getFeedByTopic(String id) {
+                if(id == null || id.equals("")){
+                        attemptLogin();
+                        return;
+                }
+                showProgress(true);
+                if (mRetrofit == null){
+                        mRetrofit = RestClient.getClient();
+                }
+                apiInterface = mRetrofit.create(ApiInterface.class);
+                Call<List<Stream>> call = apiInterface.getFeedByTopic(id);
+                call.enqueue(new Callback<List<Stream>>() {
+                        @Override
+                        public void onResponse(Call<List<Stream>> call, Response<List<Stream>> response) {
+
+                                if (response.code() == 200 ){
+
+                                        showProgress(false);
+                                        feed = response.body();
+                                        mAdapter = new MatchGridAdapter(MainActivity.this,feed,listener);
+                                        mRecyclerView.setAdapter(mAdapter);
+                                }
+                                else {
+
+
+                                        Toast.makeText(MainActivity.this,response.errorBody().toString(),Toast.LENGTH_LONG).show();
+                                }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Stream>> call, Throwable t) {
+
+                                showProgress(false);
+                                Toast.makeText(MainActivity.this,t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        }
+                });
+
+        }
+        private void attemptLogin() {
 
         showProgress(true);
         if (mRetrofit == null){
@@ -224,6 +264,8 @@ public boolean onNavigationItemSelected(MenuItem item) {
         if (id == R.id.nav_camera) {
         // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+                Intent o = new Intent(MainActivity.this,TopicsActivity.class);
+                startActivityForResult(o, 1);
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -238,5 +280,20 @@ public boolean onNavigationItemSelected(MenuItem item) {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+        }
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+                if (requestCode == 1) {
+                        if(resultCode == Activity.RESULT_OK){
+                                String id = data.getStringExtra("topicId");
+                                getFeedByTopic(id);
+
+                        }
+                        if (resultCode == Activity.RESULT_CANCELED) {
+                                //Write your code if there's no result
+                                attemptLogin();
+                        }
+                }
         }
         }
