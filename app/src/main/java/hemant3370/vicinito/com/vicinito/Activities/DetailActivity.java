@@ -7,11 +7,6 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,13 +24,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hemant3370.vicinito.com.vicinito.Adapters.CustomItemClickListener;
-import hemant3370.vicinito.com.vicinito.Adapters.MatchGridAdapter;
 import hemant3370.vicinito.com.vicinito.Adapters.feedDetailAdapter;
 import hemant3370.vicinito.com.vicinito.Applications.Initializer;
 import hemant3370.vicinito.com.vicinito.Models.Stream.ItemDetail.ItemDetail;
 import hemant3370.vicinito.com.vicinito.Models.Stream.ItemDetail.Resource;
-import hemant3370.vicinito.com.vicinito.Models.Stream.Stream;
-import hemant3370.vicinito.com.vicinito.Models.Stream.StreamResponse;
 import hemant3370.vicinito.com.vicinito.R;
 import hemant3370.vicinito.com.vicinito.Retrofit.Client.RestClient;
 import hemant3370.vicinito.com.vicinito.Retrofit.Services.ApiInterface;
@@ -50,7 +42,6 @@ public class DetailActivity extends AppCompatActivity {
     @Bind(R.id.detailtitle)
     TextView titleTV;
     private RecyclerView.Adapter mAdapter;
-    private GridLayoutManager mLayoutManager;
     public CustomItemClickListener listener;
     @Bind(R.id.detail_progress) View mProgressView;
     List<Resource> feed = new ArrayList<>();
@@ -69,9 +60,10 @@ public class DetailActivity extends AppCompatActivity {
         ((Initializer) getApplication()).getNetComponent().inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        setTitle("");
         final Activity activity = this;
         // use a linear layout manager
+        GridLayoutManager mLayoutManager;
         if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mLayoutManager = new GridLayoutManager(this, 1);
 //            mLayoutManager = new StaggeredGridLayoutManager(2,Configuration.ORIENTATION_PORTRAIT);
@@ -115,6 +107,7 @@ public class DetailActivity extends AppCompatActivity {
                     mAdapter = new feedDetailAdapter(DetailActivity.this,feed,listener);
                     mRecyclerView.setAdapter(mAdapter);
                     titleTV.setText(response.body().getTitle());
+                    setTitle(response.body().getTopic().get(0).getName());
                 }
                 else {
 

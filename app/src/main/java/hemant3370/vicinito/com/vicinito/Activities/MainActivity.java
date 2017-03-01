@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity
         implements  NavigationView.OnNavigationItemSelectedListener {
         @Bind(R.id.feed_recycler_view) RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
-        private GridLayoutManager mLayoutManager;
         public CustomItemClickListener listener;
         @Bind(R.id.main_progress) View mProgressView;
         List<Stream> feed = new ArrayList<>();
@@ -88,7 +87,8 @@ public void onClick(View view) {
 
 
         // use a linear layout manager
-        if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                GridLayoutManager mLayoutManager;
+                if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
         mLayoutManager = new GridLayoutManager(this, 1);
 //            mLayoutManager = new StaggeredGridLayoutManager(2,Configuration.ORIENTATION_PORTRAIT);
 
@@ -266,14 +266,6 @@ public boolean onNavigationItemSelected(MenuItem item) {
         } else if (id == R.id.nav_gallery) {
                 Intent o = new Intent(MainActivity.this,TopicsActivity.class);
                 startActivityForResult(o, 1);
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
