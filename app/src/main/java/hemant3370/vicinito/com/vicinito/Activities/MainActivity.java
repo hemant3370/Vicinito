@@ -50,10 +50,6 @@ public class MainActivity extends AppCompatActivity
         public CustomItemClickListener listener;
         @Bind(R.id.main_progress) View mProgressView;
         List<Stream> feed = new ArrayList<>();
-        @OnClick(R.id.fab)
-        public void fabAction(){
-
-        }
         @Inject
         Retrofit mRetrofit;
         ApiInterface apiInterface;
@@ -65,14 +61,6 @@ public class MainActivity extends AppCompatActivity
         ((Initializer) getApplication()).getNetComponent().inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View view) {
-        attemptLogin();
-        }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

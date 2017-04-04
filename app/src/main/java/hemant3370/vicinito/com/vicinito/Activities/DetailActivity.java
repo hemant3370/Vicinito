@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,10 +47,6 @@ public class DetailActivity extends AppCompatActivity {
     public CustomItemClickListener listener;
     @Bind(R.id.detail_progress) View mProgressView;
     List<Resource> feed = new ArrayList<>();
-    @OnClick(R.id.fabdetailActivity)
-    public void fabAction(){
-
-    }
     @Inject
     Retrofit mRetrofit;
     ApiInterface apiInterface;
@@ -85,10 +83,10 @@ public class DetailActivity extends AppCompatActivity {
 
 //        mAdapter = new MatchGridAdapter(this,feed,listener);
 //        mRecyclerView.setAdapter(mAdapter);
-        attemptLogin();
+        getDetails();
     }
 
-    private void attemptLogin() {
+    private void getDetails() {
 
         showProgress(true);
         if (mRetrofit == null){
@@ -110,11 +108,8 @@ public class DetailActivity extends AppCompatActivity {
                     setTitle(response.body().getTopic().get(0).getName());
                 }
                 else {
-
-
                     Toast.makeText(DetailActivity.this,response.errorBody().toString(),Toast.LENGTH_LONG).show();
                 }
-
             }
 
             @Override
@@ -132,31 +127,23 @@ public class DetailActivity extends AppCompatActivity {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        mRecyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
+        mRecyclerView.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mRecyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
 
-            mRecyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mRecyclerView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mRecyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mRecyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
+        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProgressView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 }
