@@ -31,10 +31,9 @@
             android:id="@+id/detailivdesc"
             android:layout_below="@+id/ivdetailitem"
             android:textSize="14sp"
-            android:paddingLeft="20dp"
+            android:layout_margin="8dp"
             android:paddingTop="8dp"
             android:textColor="@color/colorPrimaryDark"
-            android:text="Caption"
             />
 
     </RelativeLayout>
