@@ -1,6 +1,7 @@
 package hemant3370.vicinito.com.vicinito.Adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
@@ -95,32 +96,33 @@ public class MatchGridAdapter extends RecyclerView.Adapter<MatchGridAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Stream stream = mFileset.get(position);
+        if (stream != null && stream.getUser() != null) {
             holder.titleTV.setText(nullCheck(stream.getTitle()));
-        Spanned result;
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            result = Html.fromHtml(stream.getHtmlDescription(),Html.FROM_HTML_MODE_LEGACY);
-        } else {
-            result = Html.fromHtml(stream.getHtmlDescription());
-        }
+            Spanned result;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                result = Html.fromHtml(nullCheck(stream.getHtmlDescription()), Html.FROM_HTML_MODE_LEGACY);
+            } else {
+                result = Html.fromHtml(nullCheck(stream.getHtmlDescription()));
+            }
             holder.descriptionTV.setText(result);
             holder.authorTV.setText(nullCheck(stream.getUser().getName()));
-          holder.shareCountTV.setText(nullCheck(stream.getSocial().getShares().toString()));
-          holder.heartCountTV.setText(nullCheck(stream.getSocial().getLikes().toString()));
-          Glide.with(context).load(nullCheck(stream.getUser().getThumbnail())).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().into(holder.authorIV);
-          Glide.with(context).load(nullCheck(stream.getMedia().getUrl())).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().fitCenter().listener(new RequestListener<String, GlideDrawable>() {
-            @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                return false;
-            }
+            holder.shareCountTV.setText(nullCheck(stream.getSocial().getShares().toString()));
+            holder.heartCountTV.setText(nullCheck(stream.getSocial().getLikes().toString()));
+            Glide.with(context).load(nullCheck(stream.getUser().getThumbnail())).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().into(holder.authorIV);
+            Glide.with(context).load(nullCheck(stream.getMedia().getUrl())).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().fitCenter().listener(new RequestListener<String, GlideDrawable>() {
+                @Override
+                public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                    return false;
+                }
 
-            @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                holder.imgageView.setImageDrawable(resource);
-                return false;
-            }
-        })
-                .into(holder.imgageView);
+                @Override
+                public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                    holder.imgageView.setImageDrawable(resource);
+                    return false;
+                }
+            })
+                    .into(holder.imgageView);
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
