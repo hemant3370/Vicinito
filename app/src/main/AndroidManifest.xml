@@ -25,8 +25,20 @@
         <activity
             android:name=".Activities.DetailActivity"
             android:label="@string/title_activity_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.TopicsActivity"></activity>
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme"
+             >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainActivity" />
+            </activity>
+        <activity android:name=".Activities.TopicsActivity"
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

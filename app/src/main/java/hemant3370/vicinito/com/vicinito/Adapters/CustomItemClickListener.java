@@ -7,5 +7,5 @@ import android.view.View;
  */
 public interface CustomItemClickListener {
     void onItemClick(View v, int position);
-
+    void onItemShare(View v, int position);
 }

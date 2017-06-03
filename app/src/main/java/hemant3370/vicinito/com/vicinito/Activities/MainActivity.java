@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +29,6 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import hemant3370.vicinito.com.vicinito.Adapters.CustomItemClickListener;
 import hemant3370.vicinito.com.vicinito.Adapters.MatchGridAdapter;
 import hemant3370.vicinito.com.vicinito.Applications.Initializer;
@@ -95,6 +94,15 @@ public class MainActivity extends AppCompatActivity
         detail.putExtra("id",feed.get(position).getId());
         startActivity(detail);
         }
+
+                @Override
+                public void onItemShare(View v, int position) {
+                        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                        sharingIntent.setType("text/html");
+                        sharingIntent.putExtra(Intent.EXTRA_TEXT, feed.get(position).getTitle());
+                        sharingIntent.putExtra(android.content.Intent.EXTRA_HTML_TEXT, Html.escapeHtml(feed.get(position).getHtmlDescription()));
+                        startActivity(Intent.createChooser(sharingIntent,"Share using"));
+                }
         };
 
 //        mAdapter = new MatchGridAdapter(this,feed,listener);
@@ -119,9 +127,13 @@ public class MainActivity extends AppCompatActivity
                         public void onResponse(Call<List<Stream>> call, Response<List<Stream>> response) {
 
                                 if (response.code() == 200 ){
-
                                         showProgress(false);
-                                        feed = response.body();
+                                        for (Stream s :
+                                                response.body()) {
+                                                if (s.getTitle() != null && s.getHtmlDescription() != null) {
+                                                        feed.add(s);
+                                                }
+                                        }
                                         mAdapter = new MatchGridAdapter(MainActivity.this,feed,listener);
                                         mRecyclerView.setAdapter(mAdapter);
                                 }
@@ -157,7 +169,12 @@ public void onResponse(Call<StreamResponse> call, Response<StreamResponse> respo
         if (response.code() == 200 ){
 
         showProgress(false);
-        feed = response.body().getStream();
+                for (Stream s :
+                        response.body().getStream()) {
+                        if (s.getTitle() != null && s.getHtmlDescription() != null) {
+                                feed.add(s);
+                        }
+                }
         mAdapter = new MatchGridAdapter(MainActivity.this,feed,listener);
         mRecyclerView.setAdapter(mAdapter);
         }

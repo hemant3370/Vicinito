@@ -4,15 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +21,6 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import hemant3370.vicinito.com.vicinito.Adapters.CustomItemClickListener;
 import hemant3370.vicinito.com.vicinito.Adapters.feedDetailAdapter;
 import hemant3370.vicinito.com.vicinito.Applications.Initializer;
@@ -56,8 +52,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
         ((Initializer) getApplication()).getNetComponent().inject(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         setTitle("");
         final Activity activity = this;
         // use a linear layout manager
@@ -79,10 +73,12 @@ public class DetailActivity extends AppCompatActivity {
             public void onItemClick(View v, int position) {
 
             }
-        };
 
-//        mAdapter = new MatchGridAdapter(this,feed,listener);
-//        mRecyclerView.setAdapter(mAdapter);
+            @Override
+            public void onItemShare(View v, int position) {
+
+            }
+        };
         getDetails();
     }
 

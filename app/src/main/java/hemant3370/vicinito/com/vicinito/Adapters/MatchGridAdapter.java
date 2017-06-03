@@ -8,9 +8,9 @@ import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -21,9 +21,7 @@ import com.bumptech.glide.request.target.Target;
 import java.util.List;
 
 import butterknife.Bind;
-
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import hemant3370.vicinito.com.vicinito.Models.Stream.Stream;
 import hemant3370.vicinito.com.vicinito.R;
 
@@ -48,6 +46,8 @@ public class MatchGridAdapter extends RecyclerView.Adapter<MatchGridAdapter.View
         @Bind(R.id.authornametv) TextView authorTV;
         @Bind(R.id.heartcount) TextView heartCountTV;
         @Bind(R.id.sharecount) TextView shareCountTV;
+        @Bind(R.id.shareiv)
+        ImageButton shareButton;
         @Bind(R.id.authoriv) ImageView authorIV;
         @Bind(R.id.ivProfile) ImageView imgageView;
 
@@ -65,7 +65,8 @@ public class MatchGridAdapter extends RecyclerView.Adapter<MatchGridAdapter.View
 
         this.listener = listener;
         this.context = context;
-        this.mFileset = fileSet;
+        mFileset = fileSet;
+
     }
 
     // Create new views (invoked by the layout manager)
@@ -85,7 +86,12 @@ public class MatchGridAdapter extends RecyclerView.Adapter<MatchGridAdapter.View
                     listener.onItemClick(v, vh.getAdapterPosition());
                 }
             });
-
+            vh.shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemShare(v, vh.getAdapterPosition());
+                }
+            });
             return vh;
 
 
