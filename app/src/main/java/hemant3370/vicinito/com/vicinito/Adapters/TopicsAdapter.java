@@ -16,7 +16,7 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hemant3370.vicinito.com.vicinito.Models.Stream.TopicResponse;
 import hemant3370.vicinito.com.vicinito.R;
@@ -36,9 +36,9 @@ private final Context context;
 // you provide access to all the views for a data item in a view holder
 public static class ViewHolder extends RecyclerView.ViewHolder {
     // each data item is just a string in this case
-    @Bind(R.id.topictitle)
+    @BindView(R.id.topictitle)
     TextView titleTextView;
-    @Bind(R.id.ivtopic)
+    @BindView(R.id.ivtopic)
     ImageView mImageView;
 
 

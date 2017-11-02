@@ -19,7 +19,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hemant3370.vicinito.com.vicinito.Adapters.CustomItemClickListener;
 import hemant3370.vicinito.com.vicinito.Adapters.feedDetailAdapter;
@@ -35,13 +35,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class DetailActivity extends AppCompatActivity {
-    @Bind(R.id.feedDetail_recycler_view)
+    @BindView(R.id.feedDetail_recycler_view)
     RecyclerView mRecyclerView;
-    @Bind(R.id.detailtitle)
+    @BindView(R.id.detailtitle)
     TextView titleTV;
     private RecyclerView.Adapter mAdapter;
     public CustomItemClickListener listener;
-    @Bind(R.id.detail_progress) View mProgressView;
+    @BindView(R.id.detail_progress) View mProgressView;
     List<Resource> feed = new ArrayList<>();
     @Inject
     Retrofit mRetrofit;

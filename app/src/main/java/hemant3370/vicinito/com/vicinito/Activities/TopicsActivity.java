@@ -18,7 +18,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hemant3370.vicinito.com.vicinito.Adapters.CustomItemClickListener;
 import hemant3370.vicinito.com.vicinito.Adapters.TopicsAdapter;
@@ -34,12 +34,12 @@ import retrofit2.Retrofit;
 
 public class TopicsActivity extends AppCompatActivity {
 
-    @Bind(R.id.topics_recycler_view)
+    @BindView(R.id.topics_recycler_view)
     RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private GridLayoutManager mLayoutManager;
     public CustomItemClickListener listener;
-    @Bind(R.id.topics_progress)
+    @BindView(R.id.topics_progress)
     View mProgressView;
     List<TopicResponse> feed = new ArrayList<>();
     @Inject

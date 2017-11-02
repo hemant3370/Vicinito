@@ -26,19 +26,31 @@
             android:name=".Activities.DetailActivity"
             android:label="@string/title_activity_detail"
             android:parentActivityName=".Activities.MainActivity"
-            android:theme="@style/AppTheme"
-             >
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MainActivity" />
-            </activity>
-        <activity android:name=".Activities.TopicsActivity"
+        </activity>
+        <activity
+            android:name=".Activities.TopicsActivity"
             android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MainActivity" />
         </activity>
+        <!-- This meta-data tag is required to use Google Play Services. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".Activities.AdActivity"
+            android:label="@string/title_activity_ad"></activity> <!-- Include the AdActivity configChanges and theme. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>

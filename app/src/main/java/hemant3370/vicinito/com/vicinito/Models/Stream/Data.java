@@ -1,13 +1,13 @@
 
 package hemant3370.vicinito.com.vicinito.Models.Stream;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("org.jsonschema2pojo")
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Data {
 
     @SerializedName("tags")

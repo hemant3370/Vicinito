@@ -1,11 +1,9 @@
 
 package hemant3370.vicinito.com.vicinito.Models.Stream;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("org.jsonschema2pojo")
 public class PublishDate {
 
     @SerializedName("date")

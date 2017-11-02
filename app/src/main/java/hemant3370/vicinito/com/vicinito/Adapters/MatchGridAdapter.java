@@ -20,7 +20,7 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hemant3370.vicinito.com.vicinito.Models.Stream.Stream;
 import hemant3370.vicinito.com.vicinito.R;
@@ -41,15 +41,15 @@ public class MatchGridAdapter extends RecyclerView.Adapter<MatchGridAdapter.View
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        @Bind(R.id.titletv) TextView titleTV;
-        @Bind(R.id.descriptiontv) TextView descriptionTV;
-        @Bind(R.id.authornametv) TextView authorTV;
-        @Bind(R.id.heartcount) TextView heartCountTV;
-        @Bind(R.id.sharecount) TextView shareCountTV;
-        @Bind(R.id.shareiv)
+        @BindView(R.id.titletv) TextView titleTV;
+        @BindView(R.id.descriptiontv) TextView descriptionTV;
+        @BindView(R.id.authornametv) TextView authorTV;
+        @BindView(R.id.heartcount) TextView heartCountTV;
+        @BindView(R.id.sharecount) TextView shareCountTV;
+        @BindView(R.id.shareiv)
         ImageButton shareButton;
-        @Bind(R.id.authoriv) ImageView authorIV;
-        @Bind(R.id.ivProfile) ImageView imgageView;
+        @BindView(R.id.authoriv) ImageView authorIV;
+        @BindView(R.id.ivProfile) ImageView imgageView;
 
 
         public ViewHolder(View v) {

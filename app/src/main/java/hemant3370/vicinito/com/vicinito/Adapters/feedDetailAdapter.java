@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hemant3370.vicinito.com.vicinito.Models.Stream.ItemDetail.Resource;
 import hemant3370.vicinito.com.vicinito.R;
@@ -40,9 +40,9 @@ public class feedDetailAdapter extends RecyclerView.Adapter<feedDetailAdapter.Vi
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        @Bind(R.id.detailivdesc)
+        @BindView(R.id.detailivdesc)
         TextView titleTextView;
-        @Bind(R.id.ivdetailitem) ImageView mImageView;
+        @BindView(R.id.ivdetailitem) ImageView mImageView;
 
 
         public ViewHolder(View v) {

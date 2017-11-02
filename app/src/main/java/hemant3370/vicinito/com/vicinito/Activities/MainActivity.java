@@ -23,11 +23,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hemant3370.vicinito.com.vicinito.Adapters.CustomItemClickListener;
 import hemant3370.vicinito.com.vicinito.Adapters.MatchGridAdapter;
@@ -44,10 +45,10 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
         implements  NavigationView.OnNavigationItemSelectedListener {
-        @Bind(R.id.feed_recycler_view) RecyclerView mRecyclerView;
+        @BindView(R.id.feed_recycler_view) RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
         public CustomItemClickListener listener;
-        @Bind(R.id.main_progress) View mProgressView;
+        @BindView(R.id.main_progress) View mProgressView;
         List<Stream> feed = new ArrayList<>();
         @Inject
         Retrofit mRetrofit;
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity
                                                         feed.add(s);
                                                 }
                                         }
+                                        Collections.reverse(feed);
                                         mAdapter = new MatchGridAdapter(MainActivity.this,feed,listener);
                                         mRecyclerView.setAdapter(mAdapter);
                                 }
@@ -201,7 +203,6 @@ private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
         mRecyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
@@ -221,13 +222,7 @@ public void onAnimationEnd(Animator animation) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
         }
         });
-        } else {
-        // The ViewPropertyAnimator APIs are not available, so simply show
-        // and hide the relevant UI components.
-        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mRecyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-        }
+}
 @Override
 public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
