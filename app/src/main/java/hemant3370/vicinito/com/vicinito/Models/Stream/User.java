@@ -1,10 +1,13 @@
 
 package hemant3370.vicinito.com.vicinito.Models.Stream;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class User implements Parcelable {
 
     @SerializedName("itemType")
     @Expose
@@ -15,6 +18,9 @@ public class User {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("profile_pic")
+    @Expose
+    private String profilePic;
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;
@@ -217,4 +223,60 @@ public class User {
         this.emailSubscription = emailSubscription;
     }
 
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.itemType);
+        dest.writeString(this.name);
+        dest.writeValue(this.id);
+        dest.writeString(this.profilePic);
+        dest.writeString(this.thumbnail);
+        dest.writeValue(this.followerCount);
+        dest.writeValue(this.followingCount);
+        dest.writeString(this.userBio);
+        dest.writeString(this.type);
+        dest.writeString(this.gender);
+        dest.writeString(this.emailSubscription);
+    }
+
+    public User() {
+    }
+
+    protected User(Parcel in) {
+        this.itemType = in.readString();
+        this.name = in.readString();
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.profilePic = in.readString();
+        this.thumbnail = in.readString();
+        this.followerCount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.followingCount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.userBio = in.readString();
+        this.type = in.readString();
+        this.gender = in.readString();
+        this.emailSubscription = in.readString();
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

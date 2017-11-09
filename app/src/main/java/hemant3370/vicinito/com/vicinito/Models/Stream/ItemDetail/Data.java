@@ -16,59 +16,40 @@ public class Data {
     @SerializedName("resources")
     @Expose
     private List<Resource> resources = null;
+    @SerializedName("products")
+    @Expose
+    private List<Product> products = null;
 
-    /**
-     * 
-     * @return
-     *     The tags
-     */
     public List<Tag> getTags() {
         return tags;
     }
 
-    /**
-     * 
-     * @param tags
-     *     The tags
-     */
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 
-    /**
-     * 
-     * @return
-     *     The description
-     */
     public String getDescription() {
         return description;
     }
 
-    /**
-     * 
-     * @param description
-     *     The description
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * 
-     * @return
-     *     The resources
-     */
     public List<Resource> getResources() {
         return resources;
     }
 
-    /**
-     * 
-     * @param resources
-     *     The resources
-     */
     public void setResources(List<Resource> resources) {
         this.resources = resources;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
 }

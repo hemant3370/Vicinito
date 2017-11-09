@@ -29,7 +29,7 @@ import hemant3370.vicinito.com.vicinito.R;
  * Created by HemantSingh on 06/12/16.
  */
 
-public class feedDetailAdapter extends RecyclerView.Adapter<feedDetailAdapter.ViewHolder> {
+public class FeedDetailAdapter extends RecyclerView.Adapter<FeedDetailAdapter.ViewHolder> {
 
     private List<Resource> mFileset;
     private final Context context;
@@ -54,7 +54,7 @@ public class feedDetailAdapter extends RecyclerView.Adapter<feedDetailAdapter.Vi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public feedDetailAdapter(Context context, List<Resource> fileSet, CustomItemClickListener listener) {
+    public FeedDetailAdapter(Context context, List<Resource> fileSet, CustomItemClickListener listener) {
 
         this.listener = listener;
         this.context = context;
@@ -70,15 +70,15 @@ public class feedDetailAdapter extends RecyclerView.Adapter<feedDetailAdapter.Vi
 
     // Create new views (invoked by the layout manager)
     @Override
-    public feedDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                          int viewType) {
+    public FeedDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                           int viewType) {
 
 
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.detailitem, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-        final feedDetailAdapter.ViewHolder vh = new feedDetailAdapter.ViewHolder(v);
+        final FeedDetailAdapter.ViewHolder vh = new FeedDetailAdapter.ViewHolder(v);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +94,7 @@ public class feedDetailAdapter extends RecyclerView.Adapter<feedDetailAdapter.Vi
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final feedDetailAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final FeedDetailAdapter.ViewHolder holder, int position) {
         Resource stream = mFileset.get(position);
         holder.titleTextView.setText(nullCheck(stream.getCaption()));
         Glide.with(context).load(nullCheck(stream.getUrl())).diskCacheStrategy(DiskCacheStrategy.ALL).crossFade().fitCenter().listener(new RequestListener<String, GlideDrawable>() {

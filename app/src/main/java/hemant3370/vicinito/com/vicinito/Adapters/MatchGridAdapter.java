@@ -92,6 +92,18 @@ public class MatchGridAdapter extends RecyclerView.Adapter<MatchGridAdapter.View
                     listener.onItemShare(v, vh.getAdapterPosition());
                 }
             });
+            vh.authorIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onUserClicked(v, vh.getAdapterPosition());
+                }
+            });
+        vh.authorTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onUserClicked(v, vh.getAdapterPosition());
+            }
+        });
             return vh;
 
 

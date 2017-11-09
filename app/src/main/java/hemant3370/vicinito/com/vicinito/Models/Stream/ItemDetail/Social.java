@@ -15,59 +15,40 @@ public class Social {
     @SerializedName("view_count")
     @Expose
     private Integer viewCount;
+    @SerializedName("isLiked")
+    @Expose
+    private Boolean isLiked;
 
-    /**
-     * 
-     * @return
-     *     The likes
-     */
     public Integer getLikes() {
         return likes;
     }
 
-    /**
-     * 
-     * @param likes
-     *     The likes
-     */
     public void setLikes(Integer likes) {
         this.likes = likes;
     }
 
-    /**
-     * 
-     * @return
-     *     The shares
-     */
     public Integer getShares() {
         return shares;
     }
 
-    /**
-     * 
-     * @param shares
-     *     The shares
-     */
     public void setShares(Integer shares) {
         this.shares = shares;
     }
 
-    /**
-     * 
-     * @return
-     *     The viewCount
-     */
     public Integer getViewCount() {
         return viewCount;
     }
 
-    /**
-     * 
-     * @param viewCount
-     *     The view_count
-     */
     public void setViewCount(Integer viewCount) {
         this.viewCount = viewCount;
+    }
+
+    public Boolean getIsLiked() {
+        return isLiked;
+    }
+
+    public void setIsLiked(Boolean isLiked) {
+        this.isLiked = isLiked;
     }
 
 }

@@ -17,7 +17,10 @@ public class Resource {
     private String caption;
     @SerializedName("properties")
     @Expose
-    private Properties__ properties;
+    private Properties_____ properties;
+    @SerializedName("variants")
+    @Expose
+    private Variants variants;
     @SerializedName("is_thumb")
     @Expose
     private Boolean isThumb;
@@ -28,128 +31,66 @@ public class Resource {
     @Expose
     private String htmlText;
 
-    /**
-     * 
-     * @return
-     *     The type
-     */
     public String getType() {
         return type;
     }
 
-    /**
-     * 
-     * @param type
-     *     The type
-     */
     public void setType(String type) {
         this.type = type;
     }
 
-    /**
-     * 
-     * @return
-     *     The url
-     */
     public String getUrl() {
         return url;
     }
 
-    /**
-     * 
-     * @param url
-     *     The url
-     */
     public void setUrl(String url) {
         this.url = url;
     }
 
-    /**
-     * 
-     * @return
-     *     The caption
-     */
     public String getCaption() {
         return caption;
     }
 
-    /**
-     * 
-     * @param caption
-     *     The caption
-     */
     public void setCaption(String caption) {
         this.caption = caption;
     }
 
-    /**
-     * 
-     * @return
-     *     The properties
-     */
-    public Properties__ getProperties() {
+    public Properties_____ getProperties() {
         return properties;
     }
 
-    /**
-     * 
-     * @param properties
-     *     The properties
-     */
-    public void setProperties(Properties__ properties) {
+    public void setProperties(Properties_____ properties) {
         this.properties = properties;
     }
 
-    /**
-     * 
-     * @return
-     *     The isThumb
-     */
+    public Variants getVariants() {
+        return variants;
+    }
+
+    public void setVariants(Variants variants) {
+        this.variants = variants;
+    }
+
     public Boolean getIsThumb() {
         return isThumb;
     }
 
-    /**
-     * 
-     * @param isThumb
-     *     The is_thumb
-     */
     public void setIsThumb(Boolean isThumb) {
         this.isThumb = isThumb;
     }
 
-    /**
-     * 
-     * @return
-     *     The text
-     */
     public String getText() {
         return text;
     }
 
-    /**
-     * 
-     * @param text
-     *     The text
-     */
     public void setText(String text) {
         this.text = text;
     }
 
-    /**
-     * 
-     * @return
-     *     The htmlText
-     */
     public String getHtmlText() {
         return htmlText;
     }
 
-    /**
-     * 
-     * @param htmlText
-     *     The html_text
-     */
     public void setHtmlText(String htmlText) {
         this.htmlText = htmlText;
     }

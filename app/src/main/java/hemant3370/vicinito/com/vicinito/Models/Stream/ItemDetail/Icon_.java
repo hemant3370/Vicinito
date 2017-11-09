@@ -4,7 +4,7 @@ package hemant3370.vicinito.com.vicinito.Models.Stream.ItemDetail;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Icon {
+public class Icon_ {
 
     @SerializedName("url")
     @Expose
@@ -14,7 +14,7 @@ public class Icon {
     private String type;
     @SerializedName("properties")
     @Expose
-    private Properties_ properties;
+    private Properties____ properties;
 
     public String getUrl() {
         return url;
@@ -32,11 +32,11 @@ public class Icon {
         this.type = type;
     }
 
-    public Properties_ getProperties() {
+    public Properties____ getProperties() {
         return properties;
     }
 
-    public void setProperties(Properties_ properties) {
+    public void setProperties(Properties____ properties) {
         this.properties = properties;
     }
 

@@ -16,12 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -100,9 +101,20 @@ public class MainActivity extends AppCompatActivity
                 public void onItemShare(View v, int position) {
                         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                         sharingIntent.setType("text/html");
-                        sharingIntent.putExtra(Intent.EXTRA_TEXT, feed.get(position).getTitle());
-                        sharingIntent.putExtra(android.content.Intent.EXTRA_HTML_TEXT, Html.escapeHtml(feed.get(position).getHtmlDescription()));
+                        try {
+                                sharingIntent.putExtra(Intent.EXTRA_TEXT,"https://vicinito.com/posts/" + URLEncoder.encode(
+                                        feed.get(position).getTitle() + "/" + feed.get(position).getId(), "UTF-8").toString());
+                        } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                        }
                         startActivity(Intent.createChooser(sharingIntent,"Share using"));
+                }
+
+                @Override
+                public void onUserClicked(View v, int position) {
+                        Intent detail = new Intent(MainActivity.this,ProfileActivity.class);
+                        detail.putExtra("USER",feed.get(position).getUser());
+                        startActivity(detail);
                 }
         };
 

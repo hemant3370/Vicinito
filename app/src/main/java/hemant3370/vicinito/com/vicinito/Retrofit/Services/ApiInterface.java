@@ -43,6 +43,13 @@ public interface ApiInterface {
     @GET("/view/content/{id}")
     Call<ItemDetail> getFeedItem(@Path("id") String id);
 
+    @Headers("Content-Type: application/json")
+    @GET("/feed/getPrivateFeed/0/{id}")
+    Call<List<Stream>> getUserFeed(@Path("id") String id);
+
+    @Headers("Content-Type: application/json")
+    @GET("/webservice/userInfo/{id}")
+    Call<Stream> getUser(@Path("id") String id);
 
 //
 //

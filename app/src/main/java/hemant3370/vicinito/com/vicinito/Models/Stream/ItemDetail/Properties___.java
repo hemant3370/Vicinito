@@ -4,7 +4,7 @@ package hemant3370.vicinito.com.vicinito.Models.Stream.ItemDetail;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Properties {
+public class Properties___ {
 
     @SerializedName("height")
     @Expose

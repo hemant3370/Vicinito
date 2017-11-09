@@ -69,6 +69,11 @@ public class TopicsActivity extends AppCompatActivity {
             public void onItemShare(View v, int position) {
 
             }
+
+            @Override
+            public void onUserClicked(View v, int position) {
+
+            }
         };
 
         attemptLogin();
